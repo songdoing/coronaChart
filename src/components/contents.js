@@ -21,6 +21,40 @@ const Contents = () => {
         "https://api.covid19api.com/total/dayone/country/ca"
       );
       console.log(res);
+      makeData(res.data);
+    };
+    const makeData = (items) => {
+      const arr = items.reduce((acc, cur) => {
+        const currentData = new Date(cur.Data);
+        const year = currentData.getFullYear();
+        const month = currentData.getMonth();
+        const date = currentData.getDate();
+
+        const confirmed = cur.confirmed;
+        const active = cur.Active;
+        const death = cur.Deaths;
+        const recovered = cur.Recovered;
+
+        const findItem = acc.find(
+          (a) => a.year === year && a.month === month && a.date === date
+        );
+
+        if (!findItem) {
+          acc.push({ year, month, date, confirmed, active, death, recovered });
+        }
+        if (findItem && findItem.date < date) {
+          findItem.active = active;
+          findItem.death = death;
+          findItem.recovered = recovered;
+          findItem.confirmed = confirmed;
+          findItem.year = year;
+          findItem.month = month;
+          findItem.date = date;
+        }
+        console.log(cur, year, month, date);
+        return acc;
+      }, []);
+      console.log(arr);
     };
 
     fetchEvents();
