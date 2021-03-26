@@ -1,11 +1,12 @@
 import "./App.css";
+import Header from "./components/header";
+import Contents from "./components/contents";
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <h1>COVID-19</h1>
-      </header>
+      <Header />
+      <Contents />
     </div>
   );
 }
