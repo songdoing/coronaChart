@@ -4,13 +4,13 @@ import axios from "axios";
 
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({
-    labels: ["Jan", "Feb", "Mar"],
+    labels: [],
     datasets: [
       {
-        label: "cumulative cases",
-        backgroundColor: "salmon",
+        label: "",
+        backgroundColor: "",
         fill: true,
-        data: [10, 4, 6],
+        data: [],
       },
     ],
   });
@@ -25,12 +25,12 @@ const Contents = () => {
     };
     const makeData = (items) => {
       const arr = items.reduce((acc, cur) => {
-        const currentData = new Date(cur.Data);
-        const year = currentData.getFullYear();
-        const month = currentData.getMonth();
-        const date = currentData.getDate();
-
-        const confirmed = cur.confirmed;
+        const currentDate = new Date(cur.Date);
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const date = currentDate.getDate();
+        console.log(year, month, date);
+        const confirmed = cur.Confirmed;
         const active = cur.Active;
         const death = cur.Deaths;
         const recovered = cur.Recovered;
@@ -40,9 +40,11 @@ const Contents = () => {
         );
 
         if (!findItem) {
+          //key value가 같으면 생략 가능
           acc.push({ year, month, date, confirmed, active, death, recovered });
         }
         if (findItem && findItem.date < date) {
+          // 오늘날짜보다 작으면 최신날짜로 업데이트해주기
           findItem.active = active;
           findItem.death = death;
           findItem.recovered = recovered;
@@ -51,10 +53,23 @@ const Contents = () => {
           findItem.month = month;
           findItem.date = date;
         }
-        console.log(cur, year, month, date);
+        //console.log(cur, year, month, date);
         return acc;
       }, []);
       console.log(arr);
+
+      const labels = arr.map((a) => `${a.month + 1}`);
+      setConfirmedData({
+        labels,
+        dataset: [
+          {
+            label: "cumulative cases",
+            backgroundColor: "salmon",
+            fill: true,
+            data: arr.map((a) => a.confirmed),
+          },
+        ],
+      });
     };
 
     fetchEvents();
