@@ -4,6 +4,8 @@ import axios from "axios";
 
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({});
+  const [quarantinedData, setQuarantinedData] = useState({});
+
   useEffect(() => {
     //데이터를 다 받은 다음에 순차적으로 실행하도록 async와 await
     const fetchEvents = async () => {
@@ -50,12 +52,24 @@ const Contents = () => {
       const labels = arr.map((a) => `${a.year} - ${a.month + 1}`);
       setConfirmedData({
         labels,
-        dataset: [
+        datasets: [
           {
-            label: "cumulative cases",
+            label: "Cumulative cases",
             backgroundColor: "salmon",
             fill: true,
             data: arr.map((a) => a.confirmed),
+          },
+        ],
+      });
+
+      setQuarantinedData({
+        labels,
+        datasets: [
+          {
+            label: "Quarantined cases",
+            borderColor: "blue",
+            fill: false,
+            data: arr.map((a) => a.active),
           },
         ],
       });
@@ -75,7 +89,23 @@ const Contents = () => {
               ({
                 title: {
                   display: true,
-                  text: "cumulative cases",
+                  text: "Cumulative cases",
+                  fontSize: 16,
+                },
+              },
+              { legend: { display: true, position: "bottom" } })
+            }
+          />
+        </div>
+
+        <div>
+          <Line
+            data={quarantinedData}
+            options={
+              ({
+                title: {
+                  display: true,
+                  text: "Quarantined cases",
                   fontSize: 16,
                 },
               },
