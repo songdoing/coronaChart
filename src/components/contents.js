@@ -5,6 +5,7 @@ import axios from "axios";
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({});
   const [quarantinedData, setQuarantinedData] = useState({});
+  const [nowData, setNowData] = useState({});
 
   useEffect(() => {
     //데이터를 다 받은 다음에 순차적으로 실행하도록 async와 await
@@ -73,10 +74,25 @@ const Contents = () => {
           },
         ],
       });
+
+      //가장 최신월 가져오기
+      const lastMonth = arr[arr.length - 1];
+      setNowData({
+        labels: ["Confirmed", "Recovered", "Deaths"],
+        datasets: [
+          {
+            label: "Confirmed, Recovered, Deaths cases",
+            backgroundColor: ["#ff3d67", "#059bff", "#ffc233"],
+            borderColor: ["#ff3d67", "#059bff", "#ffc233"],
+            fill: false,
+            data: [lastMonth.confirmed, lastMonth.recovered, lastMonth.death],
+          },
+        ],
+      });
     };
 
     fetchEvents();
-  });
+  }, []);
 
   return (
     <section>
@@ -106,6 +122,24 @@ const Contents = () => {
                 title: {
                   display: true,
                   text: "Quarantined cases",
+                  fontSize: 16,
+                },
+              },
+              { legend: { display: true, position: "bottom" } })
+            }
+          />
+        </div>
+
+        <div>
+          <Doughnut
+            data={nowData}
+            options={
+              ({
+                title: {
+                  display: true,
+                  text: `Confirmed, Recovered, Deaths cases (${new Date().getFullYear()} - ${
+                    new Date().getMonth() + 1
+                  })`,
                   fontSize: 16,
                 },
               },
