@@ -13,13 +13,19 @@
 .header h1 {
   color: #fff;
 }
-.header select {
+/* .header select {
   height: 30px;
   width: 140px;
   border-radius: 5px;
   border: none;
-}
+} */
 
 section {
   padding: 1rem;
+}
+
+.contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
 }

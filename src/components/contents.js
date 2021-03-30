@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { Bar, Doughnut, Line, HorizontalBar } from "react-chartjs-2";
 import axios from "axios";
 
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({});
   const [quarantinedData, setQuarantinedData] = useState({});
+  const [recoveredData, setRecoveredData] = useState({});
   const [nowData, setNowData] = useState({});
 
   useEffect(() => {
@@ -75,6 +76,18 @@ const Contents = () => {
         ],
       });
 
+      setRecoveredData({
+        labels,
+        datasets: [
+          {
+            label: "Recovered cases",
+            backgroundColor: "green",
+            fill: false,
+            data: arr.map((a) => a.recovered),
+          },
+        ],
+      });
+
       //가장 최신월 가져오기
       const lastMonth = arr[arr.length - 1];
       setNowData({
@@ -101,50 +114,62 @@ const Contents = () => {
         <div>
           <Bar
             data={confirmedData}
-            options={
-              ({
-                title: {
-                  display: true,
-                  text: "Cumulative cases",
-                  fontSize: 16,
-                },
+            options={{
+              title: {
+                display: true,
+                text: "Cumulative cases",
+                position: "top",
+                fontSize: 18,
               },
-              { legend: { display: true, position: "bottom" } })
-            }
+              legend: { display: true, position: "bottom" },
+            }}
           />
         </div>
 
         <div>
           <Line
             data={quarantinedData}
-            options={
-              ({
-                title: {
-                  display: true,
-                  text: "Quarantined cases",
-                  fontSize: 16,
-                },
+            options={{
+              title: {
+                display: true,
+                text: "Quarantined cases",
+                position: "top",
+                fontSize: 18,
               },
-              { legend: { display: true, position: "bottom" } })
-            }
+              legend: { display: true, position: "bottom" },
+            }}
+          />
+        </div>
+
+        <div>
+          <HorizontalBar
+            data={recoveredData}
+            options={{
+              title: {
+                display: true,
+                text: "Recovered cases",
+                position: "top",
+                fontSize: 18,
+              },
+              legend: { display: true, position: "bottom" },
+            }}
           />
         </div>
 
         <div>
           <Doughnut
             data={nowData}
-            options={
-              ({
-                title: {
-                  display: true,
-                  text: `Confirmed, Recovered, Deaths cases (${new Date().getFullYear()} - ${
-                    new Date().getMonth() + 1
-                  })`,
-                  fontSize: 16,
-                },
+            options={{
+              title: {
+                display: true,
+                text: `Confirmed, Recovered, Deaths cases (${new Date().getFullYear()} - ${
+                  new Date().getMonth() + 1
+                })`,
+                position: "top",
+                fontSize: 18,
               },
-              { legend: { display: true, position: "bottom" } })
-            }
+              legend: { display: true, position: "bottom" },
+            }}
           />
         </div>
       </div>

@@ -4,10 +4,10 @@ const Header = () => {
   return (
     <header className="header">
       <h1>COVID-19</h1>
-      <select>
+      {/* <select>
         <option>CANADA</option>
         <option>WORLD</option>
-      </select>
+      </select> */}
     </header>
   );
 };
