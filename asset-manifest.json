@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/coronaChart/static/css/main.2466f821.chunk.css",
+    "main.js": "/coronaChart/static/js/main.b38c986a.chunk.js",
+    "main.js.map": "/coronaChart/static/js/main.b38c986a.chunk.js.map",
+    "runtime-main.js": "/coronaChart/static/js/runtime-main.f7ec838d.js",
+    "runtime-main.js.map": "/coronaChart/static/js/runtime-main.f7ec838d.js.map",
+    "static/js/2.cc28ffcd.chunk.js": "/coronaChart/static/js/2.cc28ffcd.chunk.js",
+    "static/js/2.cc28ffcd.chunk.js.map": "/coronaChart/static/js/2.cc28ffcd.chunk.js.map",
+    "static/js/3.859b6586.chunk.js": "/coronaChart/static/js/3.859b6586.chunk.js",
+    "static/js/3.859b6586.chunk.js.map": "/coronaChart/static/js/3.859b6586.chunk.js.map",
+    "index.html": "/coronaChart/index.html",
+    "static/css/main.2466f821.chunk.css.map": "/coronaChart/static/css/main.2466f821.chunk.css.map",
+    "static/js/2.cc28ffcd.chunk.js.LICENSE.txt": "/coronaChart/static/js/2.cc28ffcd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7ec838d.js",
+    "static/js/2.cc28ffcd.chunk.js",
+    "static/css/main.2466f821.chunk.css",
+    "static/js/main.b38c986a.chunk.js"
+  ]
+}
