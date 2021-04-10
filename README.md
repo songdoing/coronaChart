@@ -3,6 +3,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Corona chart in Canada
+This project is Corona chart.
+
+## Sample
+<a href = "https://songdoing.github.io/coronaChart/"> Click me! </a>
 
 ## Available Scripts
 
