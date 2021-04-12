@@ -8,6 +8,9 @@ This project is Corona chart.
 ## Sample
 <a href = "https://songdoing.github.io/coronaChart/"> Click me! </a>
 
+## Screenshot
+<img src="https://user-images.githubusercontent.com/48890162/114329715-17701180-9b0e-11eb-8adf-7a7018318a39.png">
+
 ## Available Scripts
 
 In the project directory, you can run:
